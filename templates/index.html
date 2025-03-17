@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rep Counter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Real Time Exercise Counter</h1>
+        </header>
+
+        <!-- Exercise Section -->
+        <section class="exercises">
+            <!-- Squats -->
+            <div class="exercise" id="squats">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='images/squats.jpg') }}" alt="Squats">
+                </div>
+                <p>Squats</p>
+                <button onclick="startCounting('squat')">Start</button>
+            </div>
+
+            <!-- Pullups -->
+            <div class="exercise" id="pullups">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='images/pullups.jpg') }}" alt="Pullups">
+                </div>
+                <p>Pullups</p>
+                <button onclick="startCounting('pullUp')">Start</button>
+            </div>
+
+            <!-- Lunges -->
+            <div class="exercise" id="lunges">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='images/lunges.jpg') }}" alt="Lunges">
+                </div>
+                <p>Lunges</p>
+                <button onclick="startCounting('lunges')">Start</button>
+            </div>
+
+            <!-- Pushups -->
+            <div class="exercise" id="pushups">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='images/pushups.jpg') }}" alt="Pushups">
+                </div>
+                <p>Pushups</p>
+                <button onclick="startCounting('pushUp')">Start</button>
+            </div>
+
+            <!-- Bicep Curls -->
+            <div class="exercise" id="bicepCurl">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='images/bicepcurls.jpg') }}" alt="Bicep Curl">
+                </div>
+                <p>Bicep Curl</p>
+                <button onclick="startCounting('bicepCurl')">Start</button>
+            </div>
+
+            <!-- Deadlift -->
+            <div class="exercise" id="deadlift">
+                <div class="image">
+                    <img src="{{ url_for('static', filename='images/deadlift.jpg') }}" alt="Deadlift">
+                </div>
+                <p>Deadlift</p>
+                <button onclick="startCounting('deadlift')">Start</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Define startCounting function to initiate backend request
+        function startCounting(exercise) {
+            fetch(`/start/${exercise}`)
+                .then(response => response.text())
+                .then(data => {
+                    alert(data); // Display status message from server
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
